@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Scabbers 🤍</title>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+body {
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#fce3ec,#e0f7fa);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  text-align:center;
+}
+
+.container {
+  display:none;
+  flex-direction:column;
+  align-items:center;
+}
+
+button {
+  padding:18px 35px;
+  font-size:18px;
+  border:none;
+  border-radius:40px;
+  background:#ff8fab;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+button:hover { transform:scale(1.1); }
+
+h1 {
+  color:#444;
+  margin-bottom:10px;
+}
+
+.cake {
+  position:relative;
+  margin-top:20px;
+  width:220px;
+  height:160px;
+  background:#ffcad4;
+  border-radius:15px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+
+.candle {
+  position:absolute;
+  top:-60px;
+  left:100px;
+  width:20px;
+  height:60px;
+  background:white;
+  cursor:pointer;
+}
+
+.flame {
+  position:absolute;
+  top:-20px;
+  left:2px;
+  width:15px;
+  height:20px;
+  background:gold;
+  border-radius:50%;
+  animation:flicker 0.2s infinite alternate;
+}
+
+@keyframes flicker {
+  from { transform:scale(1); }
+  to { transform:scale(1.15); }
+}
+
+.smoke {
+  position:absolute;
+  top:-30px;
+  left:-5px;
+  width:30px;
+  height:30px;
+  background:rgba(200,200,200,0.6);
+  border-radius:50%;
+  display:none;
+  animation:rise 1.5s forwards;
+}
+
+@keyframes rise {
+  from { opacity:1; transform:translateY(0); }
+  to { opacity:0; transform:translateY(-60px); }
+}
+
+.letter {
+  display:none;
+  max-width:400px;
+  margin-top:25px;
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  color:#444;
+}
+
+.tulips {
+  font-size:40px;
+  margin-top:15px;
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="startSurprise()">Open Your Surprise 🎁</button>
+
+<div class="container" id="main">
+  <h1>Happy Birthday Scabbers 🤍</h1>
+  <p>Click the candle to blow & make a wish ✨</p>
+
+  <div class="cake">
+    <div class="candle" onclick="blowCandle()">
+      <div class="flame" id="flame"></div>
+      <div class="smoke" id="smoke"></div>
+    </div>
+  </div>
+
+  <div class="tulips">🌷🌷🌷🌷🌷</div>
+
+  <div class="letter" id="letter">
+    <h3>For You 🤍</h3>
+    <p>
+      (I'm legit blessed to have you , thankyou so much for existing,for hmeshaa mood lighten up krne ke liye mera,mai hmesha better hee feel tmse baat krke chahe jitna crappy din jaa rha ho mera, you cancel out the negativity mere liye toh, so thanksss alot for always staying by my side and no matter what will be the circumstances mai hmesha tmhare saath huu or rahungiii! Hence boht boht bohttttt....... ZYADAAAAA important ho isliye please apna dhyan rkho or khush raho hmeshaa!!  )
+    </p>
+  </div>
+</div>
+
+<audio id="voice" src="hbd.mp3"></audio>
+<audio id="bgm" src="bgm.mp3" loop></audio>
+
+<script>
+
+function startSurprise(){
+  document.querySelector("button").style.display="none";
+  document.getElementById("main").style.display="flex";
+
+  document.getElementById("bgm").volume=0.3;
+  document.getElementById("bgm").play();
+}
+
+function blowCandle(){
+  document.getElementById("flame").style.display="none";
+  let smoke=document.getElementById("smoke");
+  smoke.style.display="block";
+
+  confetti({particleCount:200,spread:160});
+
+  document.getElementById("voice").play();
+  document.getElementById("letter").style.display="block";
+}
+
+</script>
+
+</body>
+</html>
